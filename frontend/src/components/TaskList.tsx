@@ -2,19 +2,24 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import TaskItem from './TaskItem';
+import TaskForm from './TaskForm';
+import { Container, List, Typography } from '@mui/material';
 
 const TaskList: React.FC = () => {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
   return (
-    <div>
-      <h2>Task List</h2>
-      <ul>
+    <Container maxWidth="sm">
+      <Typography variant="h3" gutterBottom>
+        Task List
+      </Typography>
+      <TaskForm />
+      <List>
         {tasks.map(task => (
           <TaskItem key={task.id} task={task} />
         ))}
-      </ul>
-    </div>
+      </List>
+    </Container>
   );
 };
 
